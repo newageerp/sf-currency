@@ -6,3 +6,5 @@ services:
 
   Newageerp\SfCurrency\Service\CurrencyService:
     arguments: [ ]
+  Newageerp\SfCurrency\Controller\CurrencyController:
+    arguments: [ ]
