@@ -24,4 +24,18 @@ class CurrencyController extends OaBaseController
 
         return $this->json(['data' => $currencyService->getRateFor($currency, $date)]);
     }
+
+    /**
+     * @Route(path="/getRateForCurrencyId", methods={"POST"})
+     */
+    public function getRateForCurrencyId(Request $request, CurrencyService $currencyService)
+    {
+        $request = $this->transformJsonBody($request);
+        $date = $request->get('date');
+        $repo = $this->getEm()->getRepository('App\Entity\Currency');
+        $currencyId = $request->get('currencyId');
+        $currencyOrm = $repo->find($currencyId);
+
+        return $this->json(['data' => $currencyService->getRateFor($currencyOrm->getCurrency(), $date)]);
+    }
 }
